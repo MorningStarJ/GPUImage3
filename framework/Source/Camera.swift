@@ -126,9 +126,11 @@ public class Camera: NSObject, ImageSource, AVCaptureVideoDataOutputSampleBuffer
         
         if captureAsYUV {
             supportsFullYUVRange = false
-            let supportedPixelFormats = videoOutput.availableVideoPixelFormatTypes
+//            let supportedPixelFormats = videoOutput.availableVideoPixelFormatTypes
+            let supportedPixelFormats = videoOutput.availableVideoCodecTypes
             for currentPixelFormat in supportedPixelFormats {
-                if ((currentPixelFormat as NSNumber).int32Value == Int32(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)) {
+//                if ((currentPixelFormat as NSNumber).int32Value == Int32(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)) {
+                if currentPixelFormat == .h264 {
                     supportsFullYUVRange = true
                 }
             }
